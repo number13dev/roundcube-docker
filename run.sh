@@ -20,6 +20,8 @@ DES_KEY=$(< /dev/urandom tr -dc A-Z-a-z-0-9 | head -c${1:-24};echo;)
 sed -i "s/{{DES_KEY}}/$DES_KEY/g" config.inc.php
 sed -i "s/{{MAIL_NAME}}/$MAIL_NAME/g" config.inc.php
 sed -i "s/{{LANG}}/$LANG/g" config.inc.php
+sed -i "s/{{PASSWORD_PLUGIN}}/${PASSWORD_PLUGIN:+password}/g" config.inc.php
+
 cp config.inc.php /var/www/html/config/config.inc.php
 
 #password config
@@ -39,4 +41,4 @@ service nginx reload
 service php7.0-fpm start
 service php7.0-fpm restart
 
-/bin/bash
+tail -f /dev/null
