@@ -40,8 +40,14 @@ echo "database on"
 
 #database setup
 echo "Database Setup"
-echo "create database"
 mysql -u root -p$DB_ROOT_PW -h $DB_HOST -se "CREATE DATABASE IF NOT EXISTS roundcube;"
+mysql -u root -p$DB_ROOT_PW -h $DB_HOST -se "DROP USER '${DB_USR}'@'%';"
+
+mysql -u root -p$DB_ROOT_PW -h $DB_HOST -se "CREATE USER IF NOT EXISTS '${DB_USR}'@'%' IDENTIFIED BY '${DB_PW}';"
+
+mysql -u root -p$SQL_PASSWORD -h $DB_HOST -se "GRANT ALL PRIVILEGES ON roundcube.* TO ${DB_USR};"
+mysql -u root -p$SQL_PASSWORD -h $DB_HOST -se "FLUSH PRIVILEGES;"
+
 echo "initalize database"
 mysql -u root -p$DB_ROOT_PW -h $DB_HOST 'roundcube' < /var/www/html/SQL/mysql.initial.sql
 
@@ -53,4 +59,5 @@ service nginx reload
 service php7.0-fpm start
 service php7.0-fpm restart
 
-tail -f /dev/null
+touch /var/www/html/logs/errors
+tail -f /var/www/html/logs/errors
