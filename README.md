@@ -9,11 +9,16 @@ docker run -t -i \
     -e SRV_NAME="example.com" \
     -e DB_USR="root" \
     -e DB_PW="dbpw" \
-    -e DB_HOST="mysql" \
+    -e DB_HOST="db" \
+    -e DB_ROOT_PW="my-secret-root-pw" \
     -e IMAP_SRV="imap.example.com" \
     -e SMTP_SRV="smtp.mexample.com" \
     -e SUPP_URL="support.example.com" \
     -e MAIL_NAME="My Example Roundcube" \
+    -e PASSWORD_PLUGIN="YES" \
+    -e VMAIL_DB_HOST="db" \
+    -e VMAIL_DB_PW="vmailpw" \
+    -e VMAIL_DB_USER="postfix" \
     roundcube
 ```
 
