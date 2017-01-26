@@ -45,6 +45,7 @@ mysql -u root -p$DB_ROOT_PW -h $DB_HOST -se "CREATE DATABASE IF NOT EXISTS round
 echo "initalize database"
 mysql -u root -p$DB_ROOT_PW -h $DB_HOST 'roundcube' < /var/www/html/SQL/mysql.initial.sql
 
+
 nginx -t
 service nginx start
 service nginx reload
@@ -52,4 +53,4 @@ service nginx reload
 service php7.0-fpm start
 service php7.0-fpm restart
 
-/bin/bash
+tail -f /dev/null

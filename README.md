@@ -56,8 +56,6 @@ you could mount: `/var/www/html/logs/`
 * VMAIL_DB_USER="postfix"
  * this is the User with whom you're connecting to the virtual mail database
 
-
-
 ##Password Addon
 
 The Password Addon lets you change your Password for your IMAP Account. Usually its a Dovecot Account.
