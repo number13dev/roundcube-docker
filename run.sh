@@ -26,13 +26,24 @@ cp config.inc.php /var/www/html/config/config.inc.php
 
 #password config
 echo "configure password plugin"
-sed -i "s/{{DB_USER}}/$DB_USR/g" password/config.inc.php
-sed -i "s/{{DB_PASSWORD}}/$DB_PW/g" password/config.inc.php
-sed -i "s/{{DB_HOST}}/$DB_HOST/g" password/config.inc.php
+sed -i "s/{{DB_USER}}/$VMAIL_DB_USER/g" password/config.inc.php
+sed -i "s/{{DB_PASSWORD}}/$VMAIL_DB_PW/g" password/config.inc.php
+sed -i "s/{{DB_HOST}}/$VMAIL_DB_HOST/g" password/config.inc.php
 cp password/config.inc.php  /var/www/html/plugins/password/config.inc.php
 
+echo "wait for database"
+while !(mysqladmin -h $DB_HOST -u root -p$DB_ROOT_PW ping)
+do
+    sleep 1
+done
+echo "database on"
+
 #database setup
-./create_db.sh
+echo "Database Setup"
+echo "create database"
+mysql -u root -p$DB_ROOT_PW -h $DB_HOST -se "CREATE DATABASE IF NOT EXISTS roundcube;"
+echo "initalize database"
+mysql -u root -p$DB_ROOT_PW -h $DB_HOST 'roundcube' < /var/www/html/SQL/mysql.initial.sql
 
 nginx -t
 service nginx start

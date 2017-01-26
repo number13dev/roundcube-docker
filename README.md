@@ -20,19 +20,21 @@ docker run -t -i \
 you could mount: `/var/www/html/logs/`
 
 ```
--v roundcube-logs:/var/www/html/logs/
+-v ~/roundcube-logs:/var/www/html/logs/
 ```
 
 ##### ENV variables:
 
 * SRV_NAME="example.com"
  * Your Hostname where your Roundcube will be available.
-* DB_USR="root"
+* DB_USR="roundcube"
  * Your Database user
-* DB_PW="dbpw"
+* DB_PW="roundcube-user-pw"
  * Your Database Password
-* DB_HOST="mysql"
+* DB_HOST="db"
  * Your Database Host
+* DB_ROOT_PW="my-secret-pw"
+ * Your Database root password
 * IMAP_SRV="imap.example.com"
  * the IMAP Server your Roundcube will connect to
 * SMTP_SRV="smtp.mexample.com"
@@ -47,6 +49,13 @@ you could mount: `/var/www/html/logs/`
  * see: http://php.net/manual/en/timezones.php
 * PASSWORD_PLUGIN="YES"
  * If this variable is set, then the Password Plugin is activated! Just leave it out if you do not want the password plugin.
+* VMAIL_DB_HOST="db"
+ * Set this to your Database where your manage your users
+* VMAIL_DB_PW="my-vmail-database-user-password"
+ * Set this to the password to access the virtual mail database
+* VMAIL_DB_USER="postfix"
+ * this is the User with whom you're connecting to the virtual mail database
+
 
 
 ##Password Addon

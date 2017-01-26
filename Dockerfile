@@ -17,7 +17,6 @@ RUN echo "extension=php_intl.dll" >> /etc/php/7.0/fpm/php.ini
 
 #add files
 ADD run.sh run.sh
-ADD create_db.sh create_db.sh
 ADD default default
 ADD password password
 ADD config.inc.php config.inc.php
