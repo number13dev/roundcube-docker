@@ -31,7 +31,6 @@ RUN rm -rf /var/www/html/installer
 
 #some chmod and chown
 RUN chmod +x run.sh
-RUN chmod +x create_db.sh
 RUN chmod -R g+w /var/www/html
 RUN chown -R www-data:www-data /var/www
 
