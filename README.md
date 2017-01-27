@@ -1,4 +1,7 @@
 # roundcube-docker
+
+**Don't run this in production! This container is in an early stage of development!**
+
 Roundcube Docker container with Password Addon
 
 to run:
