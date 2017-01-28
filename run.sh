@@ -45,8 +45,8 @@ mysql -u root -p$DB_ROOT_PW -h $DB_HOST -se "DROP USER '${DB_USR}'@'%';"
 
 mysql -u root -p$DB_ROOT_PW -h $DB_HOST -se "CREATE USER IF NOT EXISTS '${DB_USR}'@'%' IDENTIFIED BY '${DB_PW}';"
 
-mysql -u root -p$SQL_PASSWORD -h $DB_HOST -se "GRANT ALL PRIVILEGES ON roundcube.* TO ${DB_USR};"
-mysql -u root -p$SQL_PASSWORD -h $DB_HOST -se "FLUSH PRIVILEGES;"
+mysql -u root -p$DB_ROOT_PW -h $DB_HOST -se "GRANT ALL PRIVILEGES ON roundcube.* TO ${DB_USR};"
+mysql -u root -p$DB_ROOT_PW -h $DB_HOST -se "FLUSH PRIVILEGES;"
 
 echo "initalize database"
 mysql -u root -p$DB_ROOT_PW -h $DB_HOST 'roundcube' < /var/www/html/SQL/mysql.initial.sql
