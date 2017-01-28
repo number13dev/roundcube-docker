@@ -18,7 +18,7 @@ $config['password_force_new_user'] = false;
 // SQL Driver options
 $config['password_db_dsn'] = 'mysql://{{DB_USR}}:{{DB_PASSWORD}}@{{DB_HOST}}/vmail';
 
-$config['password_query'] = 'UPDATE users SET password=%D WHERE username=%l AND domain=%d LIMIT 1';
+$config['password_query'] = 'UPDATE mailbox SET password=%D WHERE username=%u LIMIT 1';
 
 $config['password_crypt_hash'] = 'md5';
 
@@ -31,7 +31,7 @@ $config['password_dovecotpw'] = 'doveadm pw';
 $config['password_dovecotpw_method'] = 'SSHA512';
 
 // Enables use of password with crypt method prefix in %D, e.g. {MD5}$1$LUiMYWqx$fEkg/ggr/L6Mb2X7be4i1/
-$config['password_dovecotpw_with_method'] = false;
+$config['password_dovecotpw_with_method'] = true;
 
 // Using a password hash for %n and %q variables.
 // Determine which hashing algorithm should be used to generate
